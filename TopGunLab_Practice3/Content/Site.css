@@ -22,3 +22,15 @@ select,
 textarea {
     max-width: 280px;
 }
+li {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight:bold;
+}
+.title-app {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: bold;
+}
+.empty {
+    font-family: 'Solway', serif;
+    font-size:25px;
+}
