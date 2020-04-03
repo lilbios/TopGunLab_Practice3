@@ -20,5 +20,24 @@ namespace TopGunLab_Practice3.Controllers
             var products = Session["Products"] as List<Product>;
             return View(products);
         }
+        public ActionResult NewProduct()
+        {
+
+            return View();
+
+        }
+        public ActionResult NewProduct(Product product)
+        {
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult ProductSearch(string param)
+        {
+            Session["Param"] = param;
+            var products = Session["Products"] as List<Product>;
+            products = products.Where(p => p.Name.StartsWith(param)).ToList();
+            return View(products);
+        }
     }
 }

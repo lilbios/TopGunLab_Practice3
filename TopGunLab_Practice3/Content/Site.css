@@ -17,7 +17,6 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
 select,
 textarea {
     max-width: 280px;
@@ -34,3 +33,25 @@ li {
     font-family: 'Solway', serif;
     font-size:25px;
 }
+.inp-box {
+
+}
+.srch-box {
+ width:600px;
+}
+.default-box {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+
+}
+.srch-btn {
+    background: transparent;
+    outline: 0;
+    width:50px;
+    
+ 
+}
+
