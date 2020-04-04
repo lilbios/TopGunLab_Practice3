@@ -4,42 +4,32 @@
 }
 
 
-<div class="search-block">
-    @using (Ajax.BeginForm("ProductSearch", new AjaxOptions { UpdateTargetId = "products" }))
-    {
-        <input type="text" name="param" class="default-box srch-box" />
-        <input type="submit" class="srch-btn" value="🔍">
-    }
-</div>
-<div id="products">
-    @if (Model.Count > 0)
-    {
-        foreach (var item in Model)
-        {
-            <div class="row">
-                <div class="col-4">
-                    <div class="img-thumbnail">
-                        @if (item.Logo != null)
-                        {
-                            <img src="~/Content/Images/product_img/@item.Logo" alt="Alternate Text" />
-                        }
-                        else
-                        {
-                            <img src="~/Content/Images/default/default_prod.png" alt="Alternate Text" />
-                        }
-                    </div>
-                </div>
-                <div class="col-7">
-
-                </div>
-            </div>
-        }
-    }
-    else
-    {
-        <div class="empty">
-            <p>There is not products yet...</p>
+<div class="row">
+    <div class="col-9">
+        <div class="search-block" align="center">
+            @using (Ajax.BeginForm("ProductSearch", new AjaxOptions { UpdateTargetId = "products" }))
+            {
+                <input type="text" name="param" class="default-box srch-box" />
+                <input type="submit" class="srch-btn" value="🔍">
+            }
         </div>
-    }
+        <div id="products" class="m-5">
+            @if (Model.Count > 0)
+            {
+                @Html.Partial("_Products", Model);
+            }
+            else
+            {
+
+                <div class="empty" align="center">
+                    <p>There is not products yet...</p>
+                </div>
+            }
+
+        </div>
+    </div>
+    <div class="col-3" style="background-color:black">
+
+    </div>
 </div>
 

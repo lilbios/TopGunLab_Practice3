@@ -7,6 +7,7 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    padding-top: 40px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -21,37 +22,67 @@ select,
 textarea {
     max-width: 280px;
 }
+
 li {
     font-family: 'IBM Plex Mono', monospace;
-    font-weight:bold;
+    font-weight: bold;
+    color:white;
 }
+
 .title-app {
     font-family: 'IBM Plex Mono', monospace;
     font-weight: bold;
-}
-.empty {
-    font-family: 'Solway', serif;
-    font-size:25px;
-}
-.inp-box {
 
 }
-.srch-box {
- width:600px;
+
+.empty {
+    font-family: 'Solway', serif;
+    font-size: 25px;
 }
+
+.inp-box {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    width: 200px;
+}
+
+.srch-box {
+    width: 600px;
+}
+
 .default-box {
     border: 0;
     outline: 0;
     background: transparent;
     border-bottom-style: solid;
     border-bottom-width: thin;
-
 }
+
 .srch-btn {
     background: transparent;
     outline: 0;
-    width:50px;
-    
- 
+    width: 50px;
 }
 
+.loader {
+    display: none;
+    visibility: hidden;
+}
+
+.img {
+    width: 160px;
+    height: 150px;
+}
+
+.error-msg {
+    font-size:14px;
+    color:red;
+}
+label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: bold;
+    font-size:20px;
+}

@@ -18,14 +18,14 @@ namespace TopGunLab_Practice3.Models
         public int Count { get; set; }
         [Required]
         [DataType(DataType.Date)]
-        public DateTime ProductionDate { get; set; }
+        public DateTime ProductionDate { get; set; } = DateTime.Now;
         [Required]
         [DataType(DataType.Date)]
         public DateTime ExcpiryDate { get; set; }
         [Required]
         public string Description { get; set; }
         [Required]
-        Measure Meausure { get; set; }
-        public string Logo { get; set; }
+        public Measure Meausure { get; set; }
+        public string Logo { get; set; } = "default_prod.png";
     }
 }

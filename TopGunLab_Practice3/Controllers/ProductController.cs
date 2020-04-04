@@ -15,17 +15,22 @@ namespace TopGunLab_Practice3.Controllers
         {
             if (Session.Count == 0)
             {
+
                 Session["Products"] = new List<Product>();
+
             }
+
             var products = Session["Products"] as List<Product>;
             return View(products);
         }
+        [HttpGet]
         public ActionResult NewProduct()
         {
 
             return View();
 
         }
+        [HttpPost]
         public ActionResult NewProduct(Product product)
         {
 
@@ -34,10 +39,28 @@ namespace TopGunLab_Practice3.Controllers
 
         public ActionResult ProductSearch(string param)
         {
-            Session["Param"] = param;
             var products = Session["Products"] as List<Product>;
-            products = products.Where(p => p.Name.StartsWith(param)).ToList();
+            if (!string.IsNullOrEmpty(param))
+            {
+                Session["Param"] = param;
+                products = products.Where(p => p.Name.ToLower().StartsWith(param.ToLower())).ToList();
+            }
+            return PartialView("_Products", products);
+
+
+
+        }
+        public ActionResult DeleteProduct(int id)
+        {
+
+            var products = Session["Products"] as List<Product>;
+            var removedProduct = products.FirstOrDefault(p => p.ProductId == id);
+            if (removedProduct != null)
+            {
+                products.Remove(removedProduct);
+            }
             return View(products);
+
         }
     }
 }

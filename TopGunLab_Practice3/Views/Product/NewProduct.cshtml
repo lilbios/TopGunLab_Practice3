@@ -1,8 +1,55 @@
-﻿
+﻿@model TopGunLab_Practice3.Models.Product
+
 @{
     ViewBag.Title = "NewProduct";
 }
 
 <div class="container">
-    
+    @using (Html.BeginForm("NewProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row ">
+            <div class="col-sm-3" align="center">
+                <div class="error-msg">
+
+                </div>
+                <img class="img" src="~/Content/Images/default/default_prod.png">
+
+                <label id="profile-image">
+                    <input type="file" class="loader" name="loader" onchange="imgload(this)" />
+                    <small>Upload</small>
+                    <small>
+                        <i class="fa fa-camera" aria-hidden="true"></i>
+                    </small>
+                </label>
+
+            </div>
+            <div class="col-sm-9">
+                <div class="form-group">
+                    <label>Product name</label>
+                    <div class="col">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "inp-box" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Price</label>
+                    <div class="col">
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "inp-box" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Count</label>
+                    <div class="col">
+                       
+                        @Html.EditorFor(model => model.Count, new { htmlAttributes = new { @class = "inp-box " } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+        <input type="submit"/>
+    }
 </div>
