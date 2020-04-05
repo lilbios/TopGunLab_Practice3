@@ -8,7 +8,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Are you sure to create product? </h5>
+                <h5 class="modal-title" id="exampleModalLabel">Do you want to confirm your changes? </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -87,7 +87,7 @@
                     <div class="form-group block ">
                         <label>Date of expiry</label>
                         <div class="col">
-                            @Html.EditorFor(model => model.ExcpiryDate, new { @type = "date", @class = "inp-box" })
+                            @Html.TextBoxFor(model => model.ExcpiryDate)
                             <br />
                             <small class="danger">
                                 @Html.ValidationMessageFor(model => model.ExcpiryDate, "", new { @class = "text-danger" })

@@ -159,8 +159,21 @@ namespace TopGunLab_Practice3.Controllers
                 var products = Session["Products"] as List<Product>;
                 if (prodId != 0)
                 {
-                    var currentProduct = products.Where(p => p.ProductId == prodId);
+                    var currentProduct = products.Find(p => p.ProductId == prodId);
+                    products.Remove(currentProduct);
+                    var editedProduct = new Product()
+                    {
+                        ProductId = prodId,
+                        Name = product.Name,
+                        Price = product.Price,
+                        Count = product.Count,
+                        Description = product.Description,
+                        ExcpiryDate = product.ExcpiryDate,
+                        Logo = product.Logo
+                    };
 
+                    products.Add(editedProduct);
+                    Session["Products"] = products;
                 }
                 return RedirectToAction("Index");
             }

@@ -14,7 +14,6 @@ namespace TopGunLab_Practice3.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Required field")]
-
         public double Price { get; set; }
 
         [Required(ErrorMessage = "Required field")]
@@ -22,20 +21,17 @@ namespace TopGunLab_Practice3.Models
 
         [Required(ErrorMessage = "Required field")]
         [DataType(DataType.Date)]
-
         public DateTime ProductionDate { get; set; } = DateTime.Now;
 
         [DataType(DataType.Date)]
-
         [Required(ErrorMessage = "Required field")]
         public DateTime ExcpiryDate { get; set; }
 
-        [Required(ErrorMessage = "Required field")]
 
+        [Required(ErrorMessage = "Required field")]
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Required field")]
-
         public Measure Measure { get; set; }
 
         public string Logo { get; set; } 
