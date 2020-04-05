@@ -37,15 +37,7 @@ namespace TopGunLab_Practice3.Controllers
         public ActionResult NewProduct(Product product)
         {
 
-            var file = Request.Files[0];
-            if (file.ContentLength > 0)
-            {
-
-                var filename = file.FileName;
-                var path = Path.Combine(Server.MapPath("~/Content/Images/img"), filename);
-                file.SaveAs(path);
-                product.Logo = filename;
-            }
+            
             if (!Regex.IsMatch(product.Name, "[A-Za-zА-Яа-я0-9\\.]+"))
             {
                 ModelState.AddModelError(nameof(product.Name), "Product name is not valid");
@@ -66,6 +58,16 @@ namespace TopGunLab_Practice3.Controllers
 
             if (ModelState.IsValid)
             {
+                var file = Request.Files[0];
+                if (file.ContentLength > 0)
+                {
+
+                    var filename = file.FileName;
+                    var path = Path.Combine(Server.MapPath("~/Content/Images/img"), filename);
+                    file.SaveAs(path);
+                    product.Logo = filename;
+                }
+
                 var products = Session["Products"] as List<Product>;
                 product.ProductId = IdBangerProduct.UpdateId(products);
                 products.Add(product);
@@ -126,15 +128,11 @@ namespace TopGunLab_Practice3.Controllers
         [HttpPost]
         public ActionResult ProductEditor(Product product)
         {
-            var file = Request.Files[0];
-            if (file.ContentLength > 0)
-            {
+            var prodId = (int)Session["ProdId"];
+            var products = Session["Products"] as List<Product>;
+            var currentProduct = products.Find(p => p.ProductId == prodId);
 
-                var filename = file.FileName;
-                var path = Path.Combine(Server.MapPath("~/Content/Images/img"), filename);
-                file.SaveAs(path);
-                product.Logo = filename;
-            }
+
             if (!Regex.IsMatch(product.Name, "[A-Za-zА-Яа-я0-9\\.]+"))
             {
                 ModelState.AddModelError(nameof(product.Name), "Product name is not valid");
@@ -152,14 +150,20 @@ namespace TopGunLab_Practice3.Controllers
 
                 ModelState.AddModelError(nameof(product.ProductionDate), "Expire date is not valid! It cannot be earlier");
             }
-
+     
             if (ModelState.IsValid)
             {
-                var prodId = (int)Session["ProdId"];
-                var products = Session["Products"] as List<Product>;
+                var file = Request.Files[0];
+                if (file.ContentLength > 0)
+                {
+
+                    var filename = file.FileName;
+                    var path = Path.Combine(Server.MapPath("~/Content/Images/img"), filename);
+                    file.SaveAs(path);
+                }
+
                 if (prodId != 0)
                 {
-                    var currentProduct = products.Find(p => p.ProductId == prodId);
                     products.Remove(currentProduct);
                     var editedProduct = new Product()
                     {
@@ -169,7 +173,7 @@ namespace TopGunLab_Practice3.Controllers
                         Count = product.Count,
                         Description = product.Description,
                         ExcpiryDate = product.ExcpiryDate,
-                        Logo = product.Logo
+                        Logo = currentProduct?.Logo != null ? currentProduct.Logo : file?.FileName
                     };
 
                     products.Add(editedProduct);
@@ -179,6 +183,7 @@ namespace TopGunLab_Practice3.Controllers
             }
             else
             {
+                product.Logo = currentProduct?.Logo;
                 return View(product);
             }
 
