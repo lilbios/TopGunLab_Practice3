@@ -18,8 +18,7 @@ namespace TopGunLab_Practice3.Models
         public double Price { get; set; }
 
         [Required(ErrorMessage = "Required field")]
-
-        public int Count { get; set; }
+        public double Count { get; set; }
 
         [Required(ErrorMessage = "Required field")]
         [DataType(DataType.Date)]
@@ -39,6 +38,6 @@ namespace TopGunLab_Practice3.Models
 
         public Measure Measure { get; set; }
 
-        public string Logo { get; set; } = "default_prod.png";
+        public string Logo { get; set; } 
     }
 }

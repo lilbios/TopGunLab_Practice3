@@ -32,24 +32,23 @@
                         <div class="col-auto">
                             @if (item.Logo != null)
                             {
-                                <img src="~/Content/Images/img/@item.Logo" alt="Alternate Text" />
+                                <img  class="img" src="~/Content/Images/img/@item.Logo" alt="Alternate Text" />
                             }
                             else
                             {
-                                <img src="~/Content/Images/default/default_prod.png" alt="Alternate Text" />
+                                <img class="img" src="~/Content/Images/default/default_prod.png" alt="Alternate Text" />
                             }
                         </div>
                         <div class="col">
                             <div class="card-block px-2">
                                 <h4 class="card-title">@item.Name</h4>
+                                <p class="card-text">@item.Count @item.Measure per one unit of good</p>
                                 <p class="card-text">@item.Description</p>
-                                @Html.ActionLink("Settings", "WebPageConfig", "Product")
                                 <a href="@Url.Action("ProductEditor", "Product", new { id = @item.ProductId })" class="btn btn-primary">Edit</a>
-                                @using (Ajax.BeginForm("DeleteProduct", new AjaxOptions { UpdateTargetId = "products" }))
+                                @using (Html.BeginForm("DeleteProduct","Product",new { id = @item.ProductId }))
                                 {
-
-                                    <button type="submit" class="btn btn-danger" value="🗑️"></button>
-                                    <input type="submit" class="ninja"/>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">🗑️</button>
+                                    <input type="submit" class="ninja" />
                                 }
                             </div>
                         </div>

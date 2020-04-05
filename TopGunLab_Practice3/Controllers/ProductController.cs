@@ -37,7 +37,7 @@ namespace TopGunLab_Practice3.Controllers
         public ActionResult NewProduct(Product product)
         {
 
-            var file  = Request.Files[0];
+            var file = Request.Files[0];
             if (file.ContentLength > 0)
             {
 
@@ -46,34 +46,30 @@ namespace TopGunLab_Practice3.Controllers
                 file.SaveAs(path);
                 product.Logo = filename;
             }
-
-            var str = nameof(product.Count);
-            var str1 = nameof(product.Name);
-            var str2 = nameof(product.Description);
-
-            if (!Regex.IsMatch(product.Name, "[A-Za-zА-Яа-я0-9\\.]+")) {
+            if (!Regex.IsMatch(product.Name, "[A-Za-zА-Яа-я0-9\\.]+"))
+            {
                 ModelState.AddModelError(nameof(product.Name), "Product name is not valid");
             }
-            if (!Regex.IsMatch(product.Price.ToString(), "^[-+]\\d+.\\d{1,2}|\\d+"))
+            if (product.Price < 0)
             {
                 ModelState.AddModelError(nameof(product.Price), "Number  is not valid");
             }
-            if (!Regex.IsMatch(product.Count.ToString(), "\\d{1,3}"))
-
+            if (product.Count < 0)
             {
-                
                 ModelState.AddModelError(nameof(product.Count), "Number  is not valid");
             }
-            if (DateTime.Compare(product.ExcpiryDate,DateTime.Now) < 0) {
-                
+            if (DateTime.Compare(product.ExcpiryDate, DateTime.Now) < 0)
+            {
+
                 ModelState.AddModelError(nameof(product.ProductionDate), "Expire date is not valid! It cannot be earlier");
             }
-            
+
             if (ModelState.IsValid)
             {
                 var products = Session["Products"] as List<Product>;
                 product.ProductId = IdBangerProduct.UpdateId(products);
-                products.Prepend(product);
+                products.Add(product);
+
                 Session["Products"] = products;
                 return RedirectToAction("Index");
             }
@@ -81,8 +77,6 @@ namespace TopGunLab_Practice3.Controllers
             {
                 return View(product);
             }
-
-
         }
 
         public ActionResult ProductSearch(string param)
@@ -127,17 +121,53 @@ namespace TopGunLab_Practice3.Controllers
                 return HttpNotFound();
             }
         }
+
         [HttpPost]
         public ActionResult ProductEditor(Product product)
         {
-            var prodId = (int)Session["ProdId"];
-            var products = Session["Products"] as List<Product>;
-            if (prodId != 0)
+            var file = Request.Files[0];
+            if (file.ContentLength > 0)
             {
-                var currentProduct = products.Where(p => p.ProductId == prodId);
 
+                var filename = file.FileName;
+                var path = Path.Combine(Server.MapPath("~/Content/Images/img"), filename);
+                file.SaveAs(path);
+                product.Logo = filename;
             }
-            return RedirectToAction("Index");
+            if (!Regex.IsMatch(product.Name, "[A-Za-zА-Яа-я0-9\\.]+"))
+            {
+                ModelState.AddModelError(nameof(product.Name), "Product name is not valid");
+            }
+            if (product.Price < 0)
+            {
+                ModelState.AddModelError(nameof(product.Price), "Number  is not valid");
+            }
+            if (product.Count < 0)
+            {
+                ModelState.AddModelError(nameof(product.Count), "Number  is not valid");
+            }
+            if (DateTime.Compare(product.ExcpiryDate, DateTime.Now) < 0)
+            {
+
+                ModelState.AddModelError(nameof(product.ProductionDate), "Expire date is not valid! It cannot be earlier");
+            }
+
+            if (ModelState.IsValid)
+            {
+                var prodId = (int)Session["ProdId"];
+                var products = Session["Products"] as List<Product>;
+                if (prodId != 0)
+                {
+                    var currentProduct = products.Where(p => p.ProductId == prodId);
+
+                }
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(product);
+            }
+
 
         }
     }
