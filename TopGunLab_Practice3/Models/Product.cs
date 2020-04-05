@@ -10,22 +10,35 @@ namespace TopGunLab_Practice3.Models
     public class Product
     {
         public int ProductId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Required field")]
         public string Name { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Required field")]
+
         public double Price { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Required field")]
+
         public int Count { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Required field")]
         [DataType(DataType.Date)]
+
         public DateTime ProductionDate { get; set; } = DateTime.Now;
-        [Required]
+
         [DataType(DataType.Date)]
+
+        [Required(ErrorMessage = "Required field")]
         public DateTime ExcpiryDate { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Required field")]
+
         public string Description { get; set; }
-        [Required]
-        public Measure Meausure { get; set; }
+
+        [Required(ErrorMessage = "Required field")]
+
+        public Measure Measure { get; set; }
+
         public string Logo { get; set; } = "default_prod.png";
     }
 }

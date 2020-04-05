@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Solway&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -25,7 +26,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Store", "Index", "Product")</li>
                     <li>@Html.ActionLink("New Prdouct", "NewProduct", "Product")</li>
-                    <li>@Html.ActionLink("Settings", "WebPageConfig", "Product")</li>
+                    <li>@Html.ActionLink("Settings", "", "")</li>
                 </ul>
             </div>
         </div>
@@ -44,5 +45,6 @@
     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
     @RenderSection("scripts", required: false)
     <script src="~/Scripts/loader.js"></script>
+    <script src="~/Scripts/modal.js"></script>
 </body>
 </html>

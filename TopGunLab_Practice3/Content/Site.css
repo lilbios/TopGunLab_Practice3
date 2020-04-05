@@ -26,13 +26,12 @@ textarea {
 li {
     font-family: 'IBM Plex Mono', monospace;
     font-weight: bold;
-    color:white;
+    color: white;
 }
 
 .title-app {
     font-family: 'IBM Plex Mono', monospace;
     font-weight: bold;
-
 }
 
 .empty {
@@ -45,9 +44,15 @@ li {
     outline: 0;
     background: transparent;
     border-bottom-style: solid;
-    border-bottom-width: thin;
+    border-bottom-width: medium;
     width: 200px;
+    border-color: darkgrey;
 }
+
+    .inp-box:focus {
+        border-color: cornflowerblue;
+        transition: 0.4s linear;
+    }
 
 .srch-box {
     width: 600px;
@@ -59,6 +64,7 @@ li {
     background: transparent;
     border-bottom-style: solid;
     border-bottom-width: thin;
+    border-color: darkgrey;
 }
 
 .srch-btn {
@@ -68,7 +74,6 @@ li {
 }
 
 .loader {
-    display: none;
     visibility: hidden;
 }
 
@@ -78,11 +83,51 @@ li {
 }
 
 .error-msg {
-    font-size:14px;
-    color:red;
+    font-size: 14px;
+    color: red;
 }
+
 label {
     font-family: 'IBM Plex Mono', monospace;
     font-weight: bold;
-    font-size:20px;
+    font-size: 18px;
+}
+.sbmt-btn {
+    color: white;
+    background-color: #7289DA;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 600;
+    border-radius: 10px;
+    border-style: none;
+    height: 50px;
+    width:300px;
+    float: right;
+    padding-right:10px;
+}
+.measureselect {
+    flex-direction:column;
+}
+legend {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: bold;
+}
+textarea{
+    min-height:200px;
+    max-height:200px;
+    max-width:400px;
+    min-width:400px;
+    outline:none;
+    border-color:darkgray;
+}
+.block {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.profile-image {
+    border-radius:10px;
+    background-color:darkgray;
+}
+.ninja {
+    visibility: hidden;
+    display:none;
 }
