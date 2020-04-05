@@ -104,8 +104,13 @@ label {
     float: right;
     padding-right:10px;
 }
-.measureselect {
-    flex-direction:column;
+.measure {
+    color: white;
+    background-color: blue;
+    border-radius: 12px;
+    width: 50px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: bold;
 }
 legend {
     font-family: 'IBM Plex Mono', monospace;

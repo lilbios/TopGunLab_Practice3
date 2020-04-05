@@ -7,9 +7,9 @@ namespace TopGunLab_Practice3.Models.Enums
 {
     public enum Measure
     {
-        Liter,
-        Gram,
-        Piece
+        Lt,
+        Gr,
+        P
          
     }
 }

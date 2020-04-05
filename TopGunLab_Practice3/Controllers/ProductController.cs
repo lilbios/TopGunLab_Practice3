@@ -102,6 +102,7 @@ namespace TopGunLab_Practice3.Controllers
             {
                 products.Remove(removedProduct);
             }
+            Session["Products"] = products;
             return RedirectToAction("Index");
 
         }

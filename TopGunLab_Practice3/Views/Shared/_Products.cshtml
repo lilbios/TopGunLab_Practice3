@@ -42,7 +42,7 @@
                         <div class="col">
                             <div class="card-block px-2">
                                 <h4 class="card-title">@item.Name</h4>
-                                <p class="card-text">@item.Count @item.Measure per one unit of good</p>
+                                <small class="measure">@item.Count @item.Measure </small>
                                 <p class="card-text">@item.Description</p>
                                 <a href="@Url.Action("ProductEditor", "Product", new { id = @item.ProductId })" class="btn btn-primary">Edit</a>
                                 @using (Html.BeginForm("DeleteProduct","Product",new { id = @item.ProductId }))
