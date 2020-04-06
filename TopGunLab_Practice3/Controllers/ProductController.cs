@@ -37,16 +37,21 @@ namespace TopGunLab_Practice3.Controllers
         public ActionResult NewProduct(Product product)
         {
 
-            
-            if (!Regex.IsMatch(product.Name, "[A-Za-zА-Яа-я0-9\\.]+"))
+            if (!string.IsNullOrEmpty(product.Name))
             {
-                ModelState.AddModelError(nameof(product.Name), "Product name is not valid");
+                if (!Regex.IsMatch(product.Name, "[A-Za-zА-Яа-я0-9\\.]+"))
+                {
+                    ModelState.AddModelError(nameof(product.Name), "Product name is not valid");
+                }
             }
-            if (product.Price < 0)
+            else {
+                ModelState.AddModelError(nameof(product.Name), "Required field");
+            }
+            if (product?.Price < 0)
             {
                 ModelState.AddModelError(nameof(product.Price), "Number  is not valid");
             }
-            if (product.Count < 0)
+            if (product?.Count < 0)
             {
                 ModelState.AddModelError(nameof(product.Count), "Number  is not valid");
             }
@@ -114,7 +119,7 @@ namespace TopGunLab_Practice3.Controllers
         {
             Session["ProdId"] = id;
             var products = Session["Products"] as List<Product>;
-            var currentProduct = products.FirstOrDefault(p => p.ProductId == id);
+            var currentProduct = products?.FirstOrDefault(p => p.ProductId == id);
             if (currentProduct != null)
             {
                 return View(currentProduct);
@@ -133,15 +138,15 @@ namespace TopGunLab_Practice3.Controllers
             var currentProduct = products.Find(p => p.ProductId == prodId);
 
 
-            if (!Regex.IsMatch(product.Name, "[A-Za-zА-Яа-я0-9\\.]+"))
+            if (!Regex.IsMatch(product?.Name, "[A-Za-zА-Яа-я0-9\\.]+"))
             {
                 ModelState.AddModelError(nameof(product.Name), "Product name is not valid");
             }
-            if (product.Price < 0)
+            if (product?.Price < 0)
             {
                 ModelState.AddModelError(nameof(product.Price), "Number  is not valid");
             }
-            if (product.Count < 0)
+            if (product?.Count < 0)
             {
                 ModelState.AddModelError(nameof(product.Count), "Number  is not valid");
             }
@@ -150,7 +155,7 @@ namespace TopGunLab_Practice3.Controllers
 
                 ModelState.AddModelError(nameof(product.ProductionDate), "Expire date is not valid! It cannot be earlier");
             }
-     
+
             if (ModelState.IsValid)
             {
                 var file = Request.Files[0];
@@ -187,6 +192,23 @@ namespace TopGunLab_Practice3.Controllers
                 return View(product);
             }
 
+
+        }
+
+        [HttpGet]
+        public ActionResult BuyProduct(int id)
+        {
+
+            var products = Session["Products"] as List<Product>;
+            var product = products?.FirstOrDefault(p => p.ProductId == id);
+            if (product != null)
+            {
+                return View(product);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
 
         }
     }

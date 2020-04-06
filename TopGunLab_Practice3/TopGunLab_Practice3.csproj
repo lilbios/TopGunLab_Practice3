@@ -175,6 +175,7 @@
     <Content Include="Views\Shared\_Products.cshtml" />
     <Content Include="Views\Product\NewProduct.cshtml" />
     <Content Include="Views\Product\ProductEditor.cshtml" />
+    <Content Include="Views\Product\BuyProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

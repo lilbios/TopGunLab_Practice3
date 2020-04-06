@@ -78,8 +78,9 @@ li {
 }
 
 .img {
-    width: 160px;
-    height: 150px;
+    width: 260px;
+    height: 250px;
+    margin-left:30px;
 }
 
 .error-msg {
@@ -117,8 +118,8 @@ legend {
     font-weight: bold;
 }
 textarea{
-    min-height:200px;
-    max-height:200px;
+    min-height:100px;
+    max-height:100px;
     max-width:400px;
     min-width:400px;
     outline:none;
@@ -135,4 +136,36 @@ textarea{
 .ninja {
     visibility: hidden;
     display:none;
+}
+.event-info {
+    font-family: 'Darker Grotesque', sans-serif;
+    font-weight: lighter;
+}
+.own-content {
+    margin-top: 25px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: bold;
+    font-size: 15px;
+    background-color: azure;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    border-radius: 8px;
+}
+.title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top:10px;
+}
+.btn {
+    display:inline-block;
+    align-content:center;
+}
+.display-block {
+    margin-bottom:20px;
+}
+
+.view {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: bold;
+    background-color: azure;
 }

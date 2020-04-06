@@ -1,57 +1,81 @@
 ﻿@model List<TopGunLab_Practice3.Models.Product>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Are you really want delete this product? </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Choose the below option to confirm your choice
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" id="btn-close" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="request">Confirm</button>
-                </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you really want delete this product? </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Choose the below option to confirm your choice
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btn-close" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="request">Confirm</button>
             </div>
         </div>
     </div>
+</div>
 <div class="container">
 
     @if (Model.Count > 0)
     {
         foreach (var item in Model)
         {
-
-            <div class="row">
-                <div class="card">
-                    <div class="row no-gutters">
-                        <div class="col-sm-3">
-                            @if (item.Logo != null)
-                            {
-                                <img  class="img" src="~/Content/Images/img/@item.Logo" alt="Alternate Text" />
-                            }
-                            else
-                            {
-                                <img class="img" src="~/Content/Images/default/default_prod.png" alt="Alternate Text" />
-                            }
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="card-block px-2">
-                                <h4 class="card-title">@item.Name</h4>
-                                <small class="measure">@item.Count @item.Measure </small>
-                                <p class="card-text">@item.Description</p>
-                                <p class="alert-info">@item.ExcpiryDate.ToShortDateString()</p>
-                                <a href="@Url.Action("ProductEditor", "Product", new { id = @item.ProductId })" class="btn btn-primary">Edit</a>
-                                @using (Html.BeginForm("DeleteProduct","Product",new { id = @item.ProductId }))
-                                {
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">🗑️</button>
-                                    <input type="submit" class="ninja" />
-                                }
+            <div class="card mb-3 multi-content own-content">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        @if (item.Logo != null)
+                        {
+                            <img class="img" src="~/Content/Images/img/@item.Logo" alt="Alternate Text" />
+                        }
+                        else
+                        {
+                            <img class="img" src="~/Content/Images/default/default_prod.png" alt="Alternate Text" />
+                        }
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <p class="title">@item.Name</p>
+                            <hr>
+                            <div>
+                                <i class="fa fa-clock" aria-hidden="true"></i>
+                                <span class="event-info">@item.ExcpiryDate.ToShortDateString()</span>
                             </div>
+                            <div>
+                                <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                                <span class="event-info">@item.Count @item.Measure.</span>
+                            </div>
+                            <div>
+                                <i class="fa fa-comment" aria-hidden="true"></i>
+                                <span class="event-info">@item.Description</span>
+                            </div>
+                            <div class="row">
+                                <div class="btn">
+
+                                    <a href="@Url.Action("ProductEditor", "Product", new { id = @item.ProductId })" class="btn btn-primary">✏️</a>
+                                </div>
+                                <div class="btn">
+                                    <a href="@Url.Action("BuyProduct", "Product", new { id = @item.ProductId })" class="btn btn-success">Buy</a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="btn">
+                            @using (Html.BeginForm("DeleteProduct", "Product", new { id = @item.ProductId }))
+                            {
+                                <div class="row">
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">🗑️</button>
+                                    <input type="submit" class="ninja" />
+                                </div>
+
+                            }
                         </div>
                     </div>
                 </div>

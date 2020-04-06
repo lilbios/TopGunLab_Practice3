@@ -1,0 +1,46 @@
+﻿@model TopGunLab_Practice3.Models.Product
+
+    <div class="container view">
+        <div class="col-md-1">
+            <div class="btn">
+                <a href="@Url.Action("Index", "Product")" class="btn btn-default"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            @if (Model.Logo != null)
+            {
+                <img class="img" src="~/Content/Images/img/@Model.Logo" alt="Alternate Text" />
+            }
+            else
+            {
+                <img class="img" src="~/Content/Images/default/default_prod.png" alt="Alternate Text" />
+            }
+        </div>
+        <div class="col-md-4">
+            <div class="display-block">
+                @Html.DisplayNameFor(model => model.Name):
+                @Html.DisplayFor(model => model.Name)
+            </div>
+            <div class="display-block">
+                @Html.DisplayNameFor(model => model.ProductionDate):
+                @Html.DisplayFor(model => model.ProductionDate)
+            </div>
+            <div class="display-block">
+                @Html.DisplayNameFor(model => model.ExcpiryDate):
+
+                @Html.DisplayFor(model => model.ExcpiryDate)
+            </div>
+            <div class="display-block">
+                @Html.DisplayNameFor(model => model.Measure):
+
+                @Html.DisplayFor(model => model.Count)
+                @Html.DisplayFor(model => model.Measure)
+            </div>
+
+            <div class="display-block">
+                @Html.DisplayNameFor(model => model.Description):
+                @Html.DisplayFor(model => model.Description)
+            </div>
+
+        </div>
+    </div>
