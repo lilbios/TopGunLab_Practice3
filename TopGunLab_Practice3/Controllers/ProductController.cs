@@ -44,7 +44,8 @@ namespace TopGunLab_Practice3.Controllers
                     ModelState.AddModelError(nameof(product.Name), "Product name is not valid");
                 }
             }
-            else {
+            else
+            {
                 ModelState.AddModelError(nameof(product.Name), "Required field");
             }
             if (product?.Price < 0)
@@ -170,6 +171,10 @@ namespace TopGunLab_Practice3.Controllers
                 if (prodId != 0)
                 {
                     products.Remove(currentProduct);
+                    
+                    
+
+
                     var editedProduct = new Product()
                     {
                         ProductId = prodId,
@@ -178,7 +183,7 @@ namespace TopGunLab_Practice3.Controllers
                         Count = product.Count,
                         Description = product.Description,
                         ExcpiryDate = product.ExcpiryDate,
-                        Logo = currentProduct?.Logo != null ? currentProduct.Logo : file?.FileName
+                        Logo = product.Logo
                     };
 
                     products.Add(editedProduct);

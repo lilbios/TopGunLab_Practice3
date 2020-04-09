@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -14,14 +15,15 @@ namespace TopGunLab_Practice3.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Required field")]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
         [Required(ErrorMessage = "Required field")]
-        public double Count { get; set; }
+        public decimal Count { get; set; }
 
         [Required(ErrorMessage = "Required field")]
         [DataType(DataType.Date)]
-        public DateTime ProductionDate { get; set; } = DateTime.Now;
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        public string ProductionDate { get; set; } = DateTime.Now.ToShortDateString();
 
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "Required field")]
@@ -32,6 +34,7 @@ namespace TopGunLab_Practice3.Models
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Required field")]
+        [DefaultValue(false)]
         public Measure Measure { get; set; }
 
         public string Logo { get; set; } 

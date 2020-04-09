@@ -87,7 +87,7 @@
                     <div class="form-group block ">
                         <label>Date of expiry</label>
                         <div class="col">
-                            @Html.EditorFor(model => model.ExcpiryDate,"", new { @class = "inp-box" })
+                            @Html.TextBoxFor(model=> model.ExcpiryDate, "{0:yyyy-MM-dd}", new { @type = "date" })
                             <br />
                             <small class="danger">
                                 @Html.ValidationMessageFor(model => model.ExcpiryDate, "", new { @class = "text-danger" })
